@@ -3,18 +3,19 @@ import { Picture } from "astro:assets";
 import Base from "../layouts/Base.astro";
 import Mark from "../components/Mark.astro";
 import Wave from "../components/Wave.astro";
+import headshot from "../assets/damon-hombs.jpg";
 import { projects, prototypes, roles } from "../data/work.ts";
 
 const services = [
   { title: "Web apps & full-stack products", body: "TypeScript from database to UI: React, Next.js and Astro front ends, Node.js and Express APIs, tested and shipped with CI." },
+  { title: "Audio & DSP", body: "Signal processing in C++, compiled to WebAssembly to run in the browser through Web Audio, and built natively as VST3 plugins with JUCE." },
   { title: "Fast small-business websites", body: "Static-first sites that load quickly on a phone, with SEO and structured data built in, and a simple way for customers to get in touch." },
   { title: "Data & databases", body: "PostgreSQL, MongoDB and SQL Server: schema design, migrations, reporting, search, and moving data out of spreadsheets and legacy systems." },
   { title: "Cloud & delivery", body: "AWS (CDK, Lambda, S3), Azure, Cloudflare, Vercel and Netlify, with GitHub Actions pipelines so every change is checked before it ships." },
   { title: "Practical, cost-aware AI", body: "Voice and chat assistants and AI-assisted tools that do the predictable work in code first, call a model only when needed, and keep spending capped." },
-  { title: "Audio & DSP", body: "Signal processing in C++ compiled to WebAssembly for the browser, and native plugins with JUCE." },
 ];
 const title = "Anothermoth: independent software studio";
-const description = "Anothermoth is Damon Hombs's independent software studio: web apps, fast small-business websites, data systems, cloud delivery and cost-aware AI tools.";
+const description = "Anothermoth is Damon Hombs's independent software studio: web apps, fast small-business websites, data systems, cloud delivery, cost-aware AI tools and audio DSP.";
 ---
 <Base title={title} description={description}>
   <header class="nav">
@@ -37,10 +38,10 @@ const description = "Anothermoth is Damon Hombs's independent software studio: w
       <div class="wrap">
         <p class="eyebrow">Independent software studio</p>
         <h1>Software, built <em>carefully</em> and shipped.</h1>
-        <p class="lede">Anothermoth builds web apps, fast websites for small businesses, data systems and practical AI tools. One experienced engineer, from the first conversation to the live product.</p>
+        <p class="lede">Anothermoth builds web apps, fast websites for small businesses, data systems, practical AI tools and audio signal processing (DSP). One experienced engineer, from the first conversation to the live product.</p>
         <div class="actions">
           <a class="btn" href="#work">See the work</a>
-          <a class="btn ghost" href="mailto:damon.hombs@gmail.com">Start a project</a>
+          <a class="btn ghost" href="mailto:damon@anothermoth.com">Start a project</a>
         </div>
       </div>
     </section>
@@ -136,10 +137,11 @@ const description = "Anothermoth is Damon Hombs's independent software studio: w
         <div class="section-head">
           <p class="eyebrow">About</p>
           <h2 id="about-h">Damon Hombs, founder</h2>
+          <Picture class="headshot" src={headshot} alt="Damon Hombs" widths={[160, 320]} sizes="160px" formats={["avif", "webp"]} fallbackFormat="jpg" width={160} height={160} loading="lazy" decoding="async" />
         </div>
         <div>
           <div class="copy">
-            <p>Anothermoth is my studio. I'm a US-based software engineer with more than 15 years of building applications, from public-health systems and insurance tools to restaurant sites and audio software.</p>
+            <p>Anothermoth is my studio. I'm a US-based software engineer with more than 15 years of building applications, from public-health systems and insurance tools to restaurant sites and audio signal processing.</p>
             <p>I like owning a project end to end: talking with the people who will use it, building the smallest version that works, testing it properly, and staying with it after launch. I use AI tools (Claude, Copilot, Cursor) to move faster, and I direct and review the work.</p>
           </div>
           <dl class="facts" style="margin-top:28px">
@@ -158,9 +160,9 @@ const description = "Anothermoth is Damon Hombs's independent software studio: w
           <h2 id="contact-h">Have something to build?</h2>
           <p>Tell me what you need and when.</p>
         </div>
-        <a class="mail" href="mailto:damon.hombs@gmail.com">damon.hombs@gmail.com</a>
+        <a class="mail" href="mailto:damon@anothermoth.com">damon@anothermoth.com</a>
         <div class="actions">
-          <a class="btn" href="mailto:damon.hombs@gmail.com">Email me</a>
+          <a class="btn" href="mailto:damon@anothermoth.com">Email me</a>
           <a class="btn ghost" href="https://github.com/anothermoth" rel="noopener">GitHub ↗</a>
         </div>
       </div>

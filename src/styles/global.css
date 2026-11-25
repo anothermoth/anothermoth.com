@@ -124,3 +124,6 @@ section { padding: 88px 0; }
 footer { background: var(--night); color: #b9b4c2; font-size: .88rem; padding: 0 0 40px; }
 footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; border-top: 1px solid #2a2930; padding-top: 24px; }
 footer a { color: #e8e5ee; }
+
+.headshot { display: block; margin-top: 28px; }
+.headshot img, img.headshot { display: block; width: 160px; height: 160px; border-radius: 50%; object-fit: cover; background: var(--line); box-shadow: 0 0 0 1px var(--line), 0 10px 30px -18px rgb(23 22 27 / .45); }
