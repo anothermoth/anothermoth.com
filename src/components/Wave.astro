@@ -1,0 +1,23 @@
+---
+// Decorative: a few layered waveforms drawn at build time (no JavaScript).
+const W = 1200, H = 360;
+function wave(amp: number, freq: number, phase: number, decay: number) {
+  const pts: string[] = [];
+  for (let x = 0; x <= W; x += 6) {
+    const t = x / W;
+    const env = Math.exp(-decay * Math.abs(t - 0.5) * 2) ;
+    const y = H / 2 + Math.sin(t * Math.PI * 2 * freq + phase) * amp * env * Math.sin(t * Math.PI * 3 + phase * 0.5);
+    pts.push(`${x},${y.toFixed(1)}`);
+  }
+  return pts.join(" ");
+}
+const lines = [
+  { d: wave(120, 7, 0.2, 1.6), o: 0.9, w: 1.6 },
+  { d: wave(90, 11, 1.4, 2.2), o: 0.45, w: 1.2 },
+  { d: wave(60, 17, 2.6, 2.8), o: 0.3, w: 1 },
+  { d: wave(140, 4, 3.1, 1.1), o: 0.25, w: 1 },
+];
+---
+<svg class="wave" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
+  {lines.map((l) => <polyline points={l.d} fill="none" stroke="currentColor" stroke-opacity={l.o} stroke-width={l.w} vector-effect="non-scaling-stroke" />)}
+</svg>

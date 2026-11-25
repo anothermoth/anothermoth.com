@@ -1,0 +1,175 @@
+---
+import { Picture } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import Mark from "../components/Mark.astro";
+import Wave from "../components/Wave.astro";
+import { projects, prototypes, roles } from "../data/work.ts";
+
+const services = [
+  { title: "Web apps & full-stack products", body: "TypeScript from database to UI: React, Next.js and Astro front ends, Node.js and Express APIs, tested and shipped with CI." },
+  { title: "Fast small-business websites", body: "Static-first sites that load quickly on a phone, with SEO and structured data built in, and a simple way for customers to get in touch." },
+  { title: "Data & databases", body: "PostgreSQL, MongoDB and SQL Server: schema design, migrations, reporting, search, and moving data out of spreadsheets and legacy systems." },
+  { title: "Cloud & delivery", body: "AWS (CDK, Lambda, S3), Azure, Cloudflare, Vercel and Netlify, with GitHub Actions pipelines so every change is checked before it ships." },
+  { title: "Practical, cost-aware AI", body: "Voice and chat assistants and AI-assisted tools that do the predictable work in code first, call a model only when needed, and keep spending capped." },
+  { title: "Audio & DSP", body: "Signal processing in C++ compiled to WebAssembly for the browser, and native plugins with JUCE." },
+];
+const title = "Anothermoth: independent software studio";
+const description = "Anothermoth is Damon Hombs's independent software studio: web apps, fast small-business websites, data systems, cloud delivery and cost-aware AI tools.";
+---
+<Base title={title} description={description}>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="Anothermoth, back to top"><Mark /> Anothermoth</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a class="cta" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <Wave />
+      <div class="wrap">
+        <p class="eyebrow">Independent software studio</p>
+        <h1>Software, built <em>carefully</em> and shipped.</h1>
+        <p class="lede">Anothermoth builds web apps, fast websites for small businesses, data systems and practical AI tools. One experienced engineer, from the first conversation to the live product.</p>
+        <div class="actions">
+          <a class="btn" href="#work">See the work</a>
+          <a class="btn ghost" href="mailto:damon.hombs@gmail.com">Start a project</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="services" aria-labelledby="services-h">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Services</p>
+          <h2 id="services-h">What I build</h2>
+          <p>15+ years of building applications, for public agencies, associations, insurers, a payment processor and local shops.</p>
+        </div>
+        <div class="services">
+          {services.map((s, i) => (
+            <article class="service">
+              <span class="num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{s.title}</h3>
+              <p>{s.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="work" aria-labelledby="work-h">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Work</p>
+          <h2 id="work-h">Recent projects</h2>
+          <p>Live sites, working prototypes and the code behind them.</p>
+        </div>
+        <div class="projects">
+          {projects.map((p, i) => (
+            <article class="project">
+              <div class="shot">
+                <Picture src={p.image} alt={p.imageAlt} widths={[480, 800, 1200]} sizes="(max-width: 880px) 92vw, 560px" formats={["avif"]} fallbackFormat="webp" loading={i === 0 ? "eager" : "lazy"} fetchpriority={i === 0 ? "high" : "auto"} />
+                {p.secondImage && (
+                  <div class="inset">
+                    <Picture src={p.secondImage.src} alt={p.secondImage.alt} widths={[320, 480]} sizes="220px" formats={["avif"]} fallbackFormat="webp" loading="lazy" />
+                  </div>
+                )}
+              </div>
+              <div>
+                <p class="meta"><span>{p.kind}</span><span>{p.year}</span></p>
+                <h3>{p.title}</h3>
+                <p class="summary">{p.summary}</p>
+                <ul class="points">{p.points.map((pt) => <li>{pt}</li>)}</ul>
+                <ul class="tags" aria-label="Built with">{p.stack.map((t) => <li>{t}</li>)}</ul>
+                {p.links.length ? (
+                  <p class="links">{p.links.map((l) => <a href={l.href} rel="noopener">{l.label} <span aria-hidden="true">↗</span></a>)}</p>
+                ) : (
+                  <p class="private">Private repository; a walkthrough is available on request.</p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p class="sub">Prototypes and experiments</p>
+        <div class="mini">
+          {prototypes.map((p) => (
+            <article>
+              <h4>{p.href ? <a href={p.href} rel="noopener">{p.title} <span aria-hidden="true">↗</span></a> : p.title}</h4>
+              <p>{p.summary}</p>
+              <ul class="tags" aria-label="Built with">{p.stack.map((t) => <li>{t}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Experience</p>
+          <h2 id="exp-h">Before the studio</h2>
+          <p>In-house and consulting roles where I built and supported production software.</p>
+        </div>
+        <div class="roles">
+          {roles.map((r) => (
+            <article class="role">
+              <header><h3>{r.org}</h3>{r.dates && <span class="when">{r.dates}</span>}</header>
+              <p class="what">{r.role}</p>
+              <ul>{r.points.map((pt) => <li>{pt}</li>)}</ul>
+              <ul class="tags" aria-label="Built with">{r.stack.map((t) => <li>{t}</li>)}</ul>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-h">
+      <div class="wrap about">
+        <div class="section-head">
+          <p class="eyebrow">About</p>
+          <h2 id="about-h">Damon Hombs, founder</h2>
+        </div>
+        <div>
+          <div class="copy">
+            <p>Anothermoth is my studio. I'm a US-based software engineer with more than 15 years of building applications, from public-health systems and insurance tools to restaurant sites and audio software.</p>
+            <p>I like owning a project end to end: talking with the people who will use it, building the smallest version that works, testing it properly, and staying with it after launch. I use AI tools (Claude, Copilot, Cursor) to move faster, and I direct and review the work.</p>
+          </div>
+          <dl class="facts" style="margin-top:28px">
+            <div><dt>Based in</dt><dd>United States · works remotely</dd></div>
+            <div><dt>Core stack</dt><dd>TypeScript, React, Node.js, SQL</dd></div>
+            <div><dt>Education</dt><dd>BS Computer Science, Oklahoma Christian University</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Contact</p>
+          <h2 id="contact-h">Have something to build?</h2>
+          <p>Tell me what you need and when.</p>
+        </div>
+        <a class="mail" href="mailto:damon.hombs@gmail.com">damon.hombs@gmail.com</a>
+        <div class="actions">
+          <a class="btn" href="mailto:damon.hombs@gmail.com">Email me</a>
+          <a class="btn ghost" href="https://github.com/anothermoth" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="wrap">
+      <span>© {new Date().getFullYear()} Anothermoth</span>
+      <span>Built with Astro · <a href="https://github.com/anothermoth/anothermoth.com">Source</a></span>
+    </div>
+  </footer>
+</Base>

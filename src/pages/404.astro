@@ -1,0 +1,12 @@
+---
+import Base from "../layouts/Base.astro";
+import Mark from "../components/Mark.astro";
+---
+<Base title="Page not found · Anothermoth" description="This page doesn't exist." noindex>
+  <main id="main" class="wrap" style="min-height:80vh;display:grid;place-content:center;gap:18px;text-align:center;justify-items:center">
+    <Mark size={44} />
+    <h1 style="font-family:var(--serif);font-size:clamp(2.4rem,6vw,4rem);line-height:1">Nothing here.</h1>
+    <p style="color:var(--muted)">That page doesn't exist, or it moved.</p>
+    <p><a class="btn" href="/">Back to Anothermoth</a></p>
+  </main>
+</Base>
